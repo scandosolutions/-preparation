@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>استراتيجية الحوكمة والتحول الرقمي - عرض تفصيلي</title>
+    <title>استراتيجية تقييم الوضع الراهن وبناء المخطط العام - عرض تفصيلي</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -13,113 +13,78 @@
             --primary-navy: #051C33;
             --accent-cyan: #00A3FF;
             --bg-light: #F8FAFC;
-            --text-main: #1E293B;
+            --text-dark: #1E293B;
             --text-muted: #64748B;
             --white: #FFFFFF;
-            --border-color: #E2E8F0;
         }
 
         * { box-sizing: border-box; }
         body {
-            background-color: #CBD5E1;
+            background-color: #E2E8F0;
             margin: 0;
             padding: 40px 0;
             font-family: 'Tajawal', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 50px;
         }
 
         .slide {
             width: 1280px;
-            height: 720px;
+            min-height: 720px;
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 24px;
             box-shadow: 0 40px 80px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
             padding: 60px 80px;
             position: relative;
             overflow: hidden;
+            border-bottom: 10px solid var(--accent-cyan);
         }
 
-        /* Background Decorations - No Images */
-        .slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        .slide::after {
-            content: '';
-            position: absolute;
-            bottom: 40px;
-            left: 80px;
-            width: 60px;
-            height: 60px;
-            border-left: 4px solid var(--accent-cyan);
-            border-bottom: 4px solid var(--accent-cyan);
-            opacity: 0.3;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 { margin: 0; z-index: 1; }
+        /* Title Style */
         .slide-title {
-            font-size: 48px;
+            font-size: 44px;
             font-weight: 800;
             color: var(--primary-navy);
-            margin-bottom: 40px;
-            border-right: 10px solid var(--accent-cyan);
+            margin-bottom: 30px;
+            border-right: 15px solid var(--accent-cyan);
             padding-right: 25px;
+            line-height: 1.2;
         }
 
-        p, li { font-size: 22px; color: var(--text-main); line-height: 1.7; z-index: 1; }
+        h3 { color: var(--accent-cyan); font-size: 28px; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        p, li { font-size: 21px; line-height: 1.8; color: var(--text-dark); }
 
-        /* Components */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            flex-grow: 1;
-            align-items: center;
-        }
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
+        /* Card System */
         .info-card {
             background: var(--bg-light);
-            padding: 35px;
-            border-radius: 15px;
-            border-bottom: 4px solid var(--accent-cyan);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
         }
 
-        .icon-circle {
-            width: 70px;
-            height: 70px;
-            background: var(--primary-navy);
-            color: var(--accent-cyan);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin-bottom: 10px;
+        .team-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border-top: 5px solid var(--primary-navy);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
         }
+        .team-card:hover { transform: translateY(-10px); border-top-color: var(--accent-cyan); }
+        .team-icon { font-size: 50px; color: var(--accent-cyan); margin-bottom: 20px; }
 
         .bullet-list { list-style: none; padding: 0; margin: 0; }
-        .bullet-list li {
-            position: relative;
-            padding-right: 40px;
-            margin-bottom: 20px;
-        }
+        .bullet-list li { position: relative; padding-right: 35px; margin-bottom: 15px; }
         .bullet-list li::before {
             content: "\f058";
             font-family: "Font Awesome 6 Free";
@@ -127,38 +92,35 @@
             position: absolute;
             right: 0;
             color: var(--accent-cyan);
-            font-size: 24px;
+            font-size: 22px;
         }
 
-        /* Title Slide Layout */
-        .title-slide {
-            background: var(--primary-navy);
+        /* Timeline Matrix */
+        .timeline-box {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .timeline-box th { background: var(--primary-navy); color: white; padding: 20px; font-size: 20px; }
+        .timeline-box td { border: 1px solid #e0e0e0; padding: 20px; font-size: 18px; }
+        .active-cell { background: rgba(0, 163, 255, 0.1); color: var(--primary-navy); font-weight: 700; text-align: center; }
+
+        /* Special Hero Slide */
+        .hero-slide {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #0A2D4F 100%);
+            color: white;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--white);
         }
-        .title-slide h1 { font-size: 70px; color: var(--white); margin-bottom: 20px; }
-        .title-slide p { color: var(--accent-cyan); font-size: 32px; font-weight: 500; }
-
-        /* Pricing Box */
-        .pricing-container {
-            background: var(--primary-navy);
-            color: white;
-            padding: 60px;
-            border-radius: 30px;
-            text-align: center;
-            margin-top: 30px;
-        }
-        .price-amount { font-size: 90px; font-weight: 800; color: var(--accent-cyan); }
-
-        /* Logic for "Scope" warning */
-        .scope-warning {
-            background: #FFFBEB;
-            border: 2px dashed #F59E0B;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 20px;
+        .hero-slide h1 { font-size: 65px; color: white; margin-bottom: 20px; }
+        .hero-slide p { color: var(--accent-cyan); font-size: 32px; font-weight: 500; }
+        
+        .price-tag {
+            font-size: 80px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin: 20px 0;
         }
 
     </style>
@@ -166,174 +128,208 @@
 <body>
 
 <!-- 1. Title Slide -->
-<div class="slide title-slide">
-    <h1>استراتيجية الحوكمة والتحول الرقمي</h1>
-    <p>تمكين مؤسسي وتكنولوجي لشركة "عبدربه الصي"</p>
-    <div style="margin-top: 60px; opacity: 0.8; font-size: 20px;">
-        مقدم من: مكتب الحكماء للاستشارات | فبراير 2026
+<div class="slide hero-slide">
+    <h1>استراتيجية تقييم الوضع الراهن وبناء المخطط العام</h1>
+    <p>بناء الهوية المؤسسية والتحول الرقمي لشركة "عبدربه الصي"</p>
+    <div style="margin-top: 60px; font-size: 20px; opacity: 0.8; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px;">
+        مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026
     </div>
 </div>
 
-<!-- 2. Project Philosophy -->
+<!-- 2. Scope: The 4 Pillars Deep Dive -->
 <div class="slide">
-    <h2 class="slide-title">الرؤية الاستراتيجية للمشروع</h2>
-    <div class="content-grid">
-        <div>
-            <p style="font-size: 26px; font-weight: 600; color: var(--primary-navy); margin-bottom: 25px;">تحويل "النجاح الحالي" إلى "مؤسسة مستدامة".</p>
-            <p>هدفنا ليس مجرد تنظيم المكاتب، بل بناء <strong>"عقل إلكتروني"</strong> و <strong>"دستور إداري"</strong> للشركة. نحن نصمم النظام الذي يضمن أن تسير الشركة بنفس القوة والكفاءة سواء كان القادة متواجدين أو لا.</p>
-        </div>
-        <div class="info-card">
-            <h3 style="color: var(--primary-navy);"><i class="fa-solid fa-bullseye"></i> الأهداف الكبرى:</h3>
-            <ul class="bullet-list" style="margin-top: 15px;">
-                <li>بناء هيكل تنظيمي مرن وقابل للتوسع.</li>
-                <li>حماية أموال وأصول الشركة من خلال الحوكمة.</li>
-                <li>امتلاك رؤية رقمية واضحة للمستقبل.</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- 3. Phase 1 - Detailed Analysis -->
-<div class="slide">
-    <h2 class="slide-title">المرحلة الأولى: تحليل الوضع الراهن (التشخيص)</h2>
-    <div class="content-grid">
-        <div class="info-card">
-            <div class="icon-circle"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <h3>ماذا سنفعل؟</h3>
-            <p>سنقوم بجمع كافة البيانات، ومراجعة العمليات الحالية، وإجراء مقابلات شخصية مع المديرين والموظفين المؤثرين لفهم دورة العمل من الألف إلى الياء.</p>
-        </div>
-        <div class="info-card" style="background: white; border: 1px solid var(--border-color);">
-            <h3>المخرجات:</h3>
-            <ul class="bullet-list">
-                <li>تقرير "الفجوات" (ماذا ينقص الشركة حالياً؟).</li>
-                <li>خريطة المخاطر (أين تكمن نقاط الضعف؟).</li>
-                <li>توثيق دقيق لمسارات العمل الحالية.</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- 4. Phase 2 - Governance Deep Dive -->
-<div class="slide">
-    <h2 class="slide-title">المرحلة الثانية: استراتيجية الحوكمة (النظام)</h2>
-    <div class="content-grid" style="grid-template-columns: 1.2fr 0.8fr;">
-        <div>
-            <p>في هذه المرحلة نصيغ <strong>قوانين العمل الداخلية</strong> التي تحمي الشركة وتحدد المسؤوليات:</p>
-            <ul class="bullet-list" style="margin-top: 25px;">
-                <li><strong>مصفوفة الصلاحيات (LoA):</strong> تحديد دقيق لمن يحق له اتخاذ القرارات المالية والإدارية (منع العشوائية).</li>
-                <li><strong>الهياكل التنظيمية:</strong> تصميم الأقسام والوظائف بما يخدم أهداف الربحية والنمو.</li>
-                <li><strong>دليل السياسات:</strong> قواعد التعامل مع الموردين، سياسات الشراء، وحماية حقوق الشركة.</li>
-            </ul>
-        </div>
-        <div class="info-card" style="background: var(--primary-navy); color: white;">
-            <h3 style="color: var(--accent-cyan);">الفائدة المباشرة:</h3>
-            <p style="color: #CBD5E1;">"وضوح تام لكل موظف في مهامه، ورقابة صارمة تمنع الأخطاء قبل وقوعها."</p>
-        </div>
-    </div>
-</div>
-
-<!-- 5. Phase 3 - Digital Transformation -->
-<div class="slide">
-    <h2 class="slide-title">المرحلة الثالثة: التحول الرقمي (المستقبل)</h2>
-    <div class="content-grid">
-        <div class="info-card">
-            <div class="icon-circle"><i class="fa-solid fa-microchip"></i></div>
-            <h3>تصميم الحلول التقنية</h3>
-            <p>نحن لا نبيع برامج، بل نحدد لك <strong>الأنظمة الأصلح</strong> لنشاطك (مثل نظام ERP، نظام إدارة المخازن، أو المبيعات) بناءً على دراسة جدوى تقنية.</p>
-        </div>
-        <div class="info-card">
-            <div class="icon-circle"><i class="fa-solid fa-route"></i></div>
-            <h3>خارطة الطريق (Roadmap)</h3>
-            <p>سنرسم لك مساراً زمنياً لامتلاك التكنولوجيا: ماذا نشتري أولاً؟ وكيف نربط الفروع ببعضها؟ وكيف ننتقل من الورق إلى الشاشة؟</p>
-        </div>
-    </div>
-</div>
-
-<!-- 6. Phase 4 - Implementation Plan -->
-<div class="slide">
-    <h2 class="slide-title">المرحلة الرابعة: خطة العمل والتشغيل</h2>
-    <div class="content-grid">
-        <div>
-            <p>هذه هي مرحلة <strong>"تحويل الورق إلى فعل"</strong>. سنضع لك الجدول الزمني والميزانيات المطلوبة للبدء في تنفيذ الاستراتيجية المعتمدة.</p>
-            <div class="scope-warning">
-                <p><strong><i class="fa-solid fa-circle-exclamation"></i> تنبيه هام:</strong></p>
-                <p style="font-size: 18px;">هذا المشروع مخصص لـ <strong>وضع الاستراتيجية والتصميم</strong> (Blueprint). التنفيذ التقني الفعلي أو شراء البرمجيات هي مرحلة لاحقة تعقب اعتماد هذه الخطط.</p>
+    <h2 class="slide-title">نطاق العمل: دراسة شاملة للمحاور الأربعة</h2>
+    <div class="content-area">
+        <div class="grid-2">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-users"></i> رأس المال البشري</h3>
+                <p>لن نكتفي بمراجعة كشف الرواتب، بل سنقوم بـ:</p>
+                <ul class="bullet-list" style="font-size: 18px;">
+                    <li>تحليل كفاءة القيادات والكوادر الحالية.</li>
+                    <li>دراسة مدى ملاءمة الهيكل التنظيمي الحالي لتحقيق رؤية الشركة.</li>
+                    <li>تحديد الفجوات المهارية والاحتياجات التدريبية المستقبلية.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-microchip"></i> التكنولوجيا المتاحة</h3>
+                <p>تقييم البنية التكنولوجية الحالية من حيث:</p>
+                <ul class="bullet-list" style="font-size: 18px;">
+                    <li>مدى تكامل الأنظمة الحالية وقدرتها على توفير بيانات دقيقة.</li>
+                    <li>أمن المعلومات وسهولة الوصول للبيانات من قبل متخذي القرار.</li>
+                    <li>تحديد الجدوى من تحديث الأنظمة الحالية أو استبدالها.</li>
+                </ul>
             </div>
         </div>
-        <div class="info-card">
-            <h3>ماذا ستستلم في يدك؟</h3>
-            <ul class="bullet-list">
-                <li>المجلد الاستراتيجي الشامل.</li>
-                <li>أدلة الحوكمة المعتمدة.</li>
-                <li>قائمة المبادرات الرقمية المقترحة.</li>
-                <li>خطة التنفيذ (60 يوماً).</li>
-            </ul>
+        <div class="grid-2" style="margin-top: 30px;">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-compass"></i> الرؤية والاستراتيجية</h3>
+                <ul class="bullet-list" style="font-size: 18px;">
+                    <li>تقييم مدى وضوح أهداف الشركة لدى الفريق التنفيذي.</li>
+                    <li>تحليل السوق والمنافسين لتحديد موقع الشركة الاستراتيجي.</li>
+                    <li>رسم الأهداف الاستراتيجية الكبرى للسنوات الثلاث القادمة.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-sack-dollar"></i> الإمكانيات المالية</h3>
+                <ul class="bullet-list" style="font-size: 18px;">
+                    <li>تحليل الميزانيات المخصصة للتطوير والنمو.</li>
+                    <li>دراسة تكلفة التحول الرقمي مقابل العائد المتوقع على الاستثمار.</li>
+                    <li>ضمان أن الاستراتيجية المقترحة "واقعية" ومطابقة لقدرات الشركة المالية.</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- 7. Professional Commitments -->
+<!-- 3. Methodology: Detailed Steps -->
 <div class="slide">
-    <h2 class="slide-title">التزاماتنا وضمانات الجودة</h2>
-    <div class="content-grid">
-        <div class="info-card">
-            <h4 style="color: var(--primary-navy); font-size: 24px;"><i class="fa-solid fa-user-shield"></i> السرية والخصوصية</h4>
-            <p>نلتزم بحماية كافة بيانات الشركة وأسرارها التجارية لمدة لا تقل عن 5 سنوات من تاريخ التعاقد.</p>
+    <h2 class="slide-title">منهجية العمل: كيف سنصل للنتائج؟</h2>
+    <div class="content-area">
+        <div class="info-card" style="margin-bottom: 30px; border-right: 8px solid var(--accent-cyan);">
+            <p><strong>المرحلة الأولى: التشخيص المعمق (3 أسابيع)</strong></p>
+            <p style="font-size: 18px;">تبدأ هذه المرحلة بجمع كافة الوثائق الإدارية والمالية والتقنية، وإجراء مقابلات شخصية مكثفة مع رؤساء الأقسام. نهدف هنا إلى اكتشاف "الحقيقة المجردة" عن وضع الشركة، وتحديد العوائق التي تمنعها من الانطلاق.</p>
         </div>
-        <div class="info-card">
-            <h4 style="color: var(--primary-navy); font-size: 24px;"><i class="fa-solid fa-gavel"></i> الملكية الفكرية</h4>
-            <p>تنتقل ملكية كافة الخطط والمخرجات لشركة "عبدربه الصي" فور سداد المقابل المالي المتفق عليه.</p>
+        <div class="info-card" style="margin-bottom: 30px; border-right: 8px solid var(--primary-navy);">
+            <p><strong>المرحلة الثانية: التصميم والنمذجة (3 أسابيع)</strong></p>
+            <p style="font-size: 18px;">بناءً على نتائج التشخيص، نبدأ في تصميم "المخطط المستقبلي". يشمل ذلك صياغة قواعد الحوكمة، رسم الهيكل التنظيمي الجديد، وتحديد قائمة الأنظمة التكنولوجية المقترحة. هنا نضع "القواعد" التي ستسير عليها الشركة.</p>
+        </div>
+        <div class="info-card" style="border-right: 8px solid var(--accent-cyan);">
+            <p><strong>المرحلة الثالثة: صياغة المجلد والاعتماد (أسبوعان)</strong></p>
+            <p style="font-size: 18px;">تجميع كافة الدراسات والتوصيات في "مجلد الاستراتيجية الشامل". يتم عرض المسودة النهائية على الإدارة لمناقشتها وإجراء أي تعديلات لضمان توافقها الكامل مع طموحاتكم، ثم التسليم النهائي للمجلد المطبوع والرقمي.</p>
         </div>
     </div>
 </div>
 
-<!-- 8. Team Slide -->
+<!-- 4. The Team: Meet the Experts -->
 <div class="slide">
-    <h2 class="slide-title">فريق الخبراء المخصص</h2>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px;">
-        <div class="info-card" style="text-align: center;">
-            <i class="fa-solid fa-user-tie" style="font-size: 40px; color: var(--accent-cyan);"></i>
-            <h4>د. محمد فوده</h4>
-            <p style="font-size: 18px;">المشرف العام وخبير الاستراتيجيات</p>
+    <h2 class="slide-title">فريق العمل: خبراء في قيادة التغيير</h2>
+    <div class="content-area">
+        <div class="grid-3">
+            <div class="team-card">
+                <div class="team-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <h4>د. محمد فوده</h4>
+                <p style="font-size: 16px; color: var(--accent-cyan); font-weight: bold; margin-bottom: 10px;">رئيس اللجنة والإشراف العام</p>
+                <p style="font-size: 15px;">خبير دولي في الحوكمة واستراتيجيات الشركات الكبرى. يتولى مسؤولية الربط الاستراتيجي وضمان جودة المخرجات النهائية للمشروع.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                <h4>د. كريم عبد الرؤوف</h4>
+                <p style="font-size: 16px; color: var(--accent-cyan); font-weight: bold; margin-bottom: 10px;">خبير الموارد البشرية والنمو</p>
+                <p style="font-size: 15px;">متخصص في تطوير رأس المال البشري وهيكلة المنظمات. مسؤول عن تحليل الأداء البشري وتصميم الهياكل التنظيمية الحديثة.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h4>أ. سامح الجوهري</h4>
+                <p style="font-size: 16px; color: var(--accent-cyan); font-weight: bold; margin-bottom: 10px;">خبير التميز المؤسسي</p>
+                <p style="font-size: 15px;">خبير في تطوير العمليات والقدرات المؤسسية. يتولى مسؤولية تحليل المسارات التشغيلية واقتراح حلول التحول الرقمي المناسبة.</p>
+            </div>
         </div>
-        <div class="info-card" style="text-align: center;">
-            <i class="fa-solid fa-id-card-clip" style="font-size: 40px; color: var(--accent-cyan);"></i>
-            <h4>د. كريم عبد الرؤوف</h4>
-            <p style="font-size: 18px;">خبير تطوير الأعمال والموارد البشرية</p>
-        </div>
-        <div class="info-card" style="text-align: center;">
-            <i class="fa-solid fa-chart-line" style="font-size: 40px; color: var(--accent-cyan);"></i>
-            <h4>أ. سامح الجوهري</h4>
-            <p style="font-size: 18px;">خبير العمليات والتميز المؤسسي</p>
+        <div style="text-align: center; margin-top: 40px; background: var(--bg-light); padding: 20px; border-radius: 15px;">
+            <p style="font-size: 18px; color: var(--text-muted);"><i class="fa-solid fa-users-gear"></i> يدعم اللجنة فريق فني متخصص من الاستشاريين المساعدين في مجالات التقنية والمالية والتدقيق.</p>
         </div>
     </div>
 </div>
 
-<!-- 9. Financial Offer -->
+<!-- 5. Timeline: 8-Week Breakdown -->
 <div class="slide">
-    <h2 class="slide-title">الاستثمار المالي</h2>
-    <p style="text-align: center; margin-bottom: 20px;">المقابل المالي الإجمالي لكافة مراحل الاستراتيجية والمخرجات المذكورة:</p>
-    <div class="pricing-container">
-        <div class="price-amount">150,000</div>
-        <p style="color: white; font-size: 28px;">جنيه مصري فقط لا غير</p>
-        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 60px;">
+    <h2 class="slide-title">الجدول الزمني التفصيلي (فبراير - مارس)</h2>
+    <div class="content-area">
+        <table class="timeline-box">
+            <thead>
+                <tr>
+                    <th>المرحلة التنفيذية</th>
+                    <th>فبراير (الأسبوع 1-2)</th>
+                    <th>فبراير (الأسبوع 3-4)</th>
+                    <th>مارس (الأسبوع 1-2)</th>
+                    <th>مارس (الأسبوع 3-4)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>تقييم الوضع الراهن وجمع البيانات</strong></td>
+                    <td class="active-cell">تنفيذ مكثف</td>
+                    <td class="active-cell">تحليل نهائي</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>دراسة المحاور (بشري - تقني - مالي)</strong></td>
+                    <td>-</td>
+                    <td class="active-cell">بدء الدراسة</td>
+                    <td class="active-cell">صياغة النتائج</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>وضع الاستراتيجية ودليل الحوكمة</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="active-cell">كتابة المسودة</td>
+                    <td class="active-cell">المراجعة</td>
+                </tr>
+                <tr>
+                    <td><strong>تسليم "مجلد الاستراتيجية" النهائي</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="active-cell" style="background: var(--accent-cyan); color: white;">التسليم النهائي</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 6. Final Deliverable: The Strategy Folder -->
+<div class="slide">
+    <h2 class="slide-title">المخرج النهائي: مجلد الاستراتيجية الشامل</h2>
+    <div class="content-area">
+        <div class="grid-2">
+            <div style="background: var(--primary-navy); color: white; padding: 40px; border-radius: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <i class="fa-solid fa-folder-open" style="font-size: 120px; color: var(--accent-cyan); margin-bottom: 20px;"></i>
+                <h2>مجلد الاستراتيجية</h2>
+                <p style="color: #CBD5E1;">"الدليل المرجعي للنمو والتحكم"</p>
+            </div>
             <div>
-                <i class="fa-solid fa-clock"></i> مدة التنفيذ: 60 يوماً
-            </div>
-            <div>
-                <i class="fa-solid fa-credit-card"></i> الدفع: 100% مقدماً
+                <p>هذا المجلد هو نتاج 60 يوماً من العمل الاحترافي، وسيضم:</p>
+                <ul class="bullet-list">
+                    <li><strong>تقرير التشخيص:</strong> تحليل واقعي وصريح لنقاط القوة والضعف.</li>
+                    <li><strong>دستور الحوكمة:</strong> مصفوفة الصلاحيات (LoA) والهيكل التنظيمي المعتمد.</li>
+                    <li><strong>دليل التحول الرقمي:</strong> قائمة الأنظمة المقترحة وخطة تفعيلها.</li>
+                    <li><strong>خريطة الطريق التنفيذية:</strong> خطوات ما بعد الاستراتيجية (ماذا تفعلون غداً؟).</li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 10. Final Call to Action -->
-<div class="slide title-slide">
-    <i class="fa-solid fa-handshake" style="font-size: 100px; color: var(--accent-cyan); margin-bottom: 30px;"></i>
-    <h1>جاهزون لبدء الرحلة</h1>
-    <p>مكتب الحكماء - شريككم في بناء الكيانات العملاقة</p>
+<!-- 7. Financial Investment & Payments -->
+<div class="slide">
+    <h2 class="slide-title">الاستثمار المالي وجدولة الدفعات</h2>
+    <div class="content-area">
+        <div class="grid-2">
+            <div class="info-card" style="text-align: center; justify-content: center; display: flex; flex-direction: column;">
+                <p style="font-size: 24px;">إجمالي المقابل المالي للمشروع</p>
+                <div class="price-tag">150,000</div>
+                <p style="font-size: 24px; color: var(--primary-navy);">جنيه مصري فقط لا غير</p>
+            </div>
+            <div class="info-card">
+                <h3>نظام الدفعات المالية:</h3>
+                <ul class="bullet-list" style="font-size: 19px;">
+                    <li><strong>الدفعة الأولى (50%):</strong> بقيمة 75,000 ج.م <br><small>تُسدد فور توقيع العقد (بداية فبراير).</small></li>
+                    <li style="margin-top: 15px;"><strong>الدفعة الثانية (25%):</strong> بقيمة 37,500 ج.م <br><small>تُسدد بعد مرور شهر من بدء العمل (بداية مارس).</small></li>
+                    <li style="margin-top: 15px;"><strong>الدفعة النهائية (25%):</strong> بقيمة 37,500 ج.م <br><small>تُسدد عند التسليم النهائي للمجلد المعتمد.</small></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 8. Final Message -->
+<div class="slide hero-slide">
+    <i class="fa-solid fa-award" style="font-size: 100px; color: var(--accent-cyan); margin-bottom: 30px;"></i>
+    <h1>نحن ملتزمون بنجاحكم</h1>
+    <p>مكتب الحكماء - خبراتنا تضعكم في الصدارة دائماً</p>
     <div style="margin-top: 50px; font-size: 18px; opacity: 0.6;">
-        هذا العرض سارٍ لمدة 30 يوماً من تاريخ التقديم
+        نشكركم على ثقتكم الغالية، ونتطلع لبدء العمل فوراً.
     </div>
 </div>
 
