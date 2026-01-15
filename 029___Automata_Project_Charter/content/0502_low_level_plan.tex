@@ -1,0 +1,177 @@
+% This file contains the detailed Low-Level Plan for each project phase.
+% It is intended to be included in content/05_project_plan.tex via \input command.
+
+\subsubsection{Phase 1: Project Planning and Scoping (May 15, 2025 - June 05, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Conduct project kick-off meeting & Joint & May 15, 2025 \\
+Automata resource allocation and commitment confirmation & Automata & May 22, 2025 \\
+Define detailed project objectives and deliverables & Joint (Scando Lead) & May 22, 2025 \\
+Establish project governance and communication plan & Joint (Scando Lead) & Jun 05, 2025 \\
+Develop detailed project plan (timeline, resources) & Scando & Jun 05, 2025 \\
+Finalize project scope and obtain sign-off (Project Charter) & Joint (Scando Lead) & Jun 05, 2025 \\
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Approved Project Charter (this document, finalized)
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes upon formal approval of the Project Charter by the Steering Committee, and successful completion of the project kick-off meeting.
+
+\subsubsection{Phase 2: Requirements Gathering and Analysis (Jun 15, 2025 - Jun 26, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Conduct "As-Is" and "To-Be" analysis workshops & Joint (Scando Lead) & Jun 19, 2025 \\ 
+Prepare Requirements Traceability Matrix (RTM) - Draft & Scando & Jun 22, 2025 \\ 
+Discuss RTM with Automata and gather feedback & Joint & Jun 23, 2025 \\
+Obtain required Odoo licenses & Automata & Jun 25, 2025 \\ 
+Prepare Blueprint document (including finalized RTM, high-level Process Classification Framework (PCF), Data Migration Scope) & Scando & Jun 25, 2025 \\ 
+Review and approve Blueprint document & Automata & Jun 26, 2025 \\ 
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Approved Blueprint Document (including Requirements Traceability Matrix, high-level Process Classification Framework (PCF), and initial Data Migration Scope)
+    \item Confirmation of Odoo Licenses Obtained by Automata 
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes upon formal sign-off of the Blueprint document by Automata Process Owners and the Automata Project Manager, and confirmation of Odoo license procurement by Automata.
+
+\subsubsection{Phase 3: System Design and Development (Jun 29, 2025 - Jul 10, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Configure standard Odoo modules according to approved RTM & Scando & Jul 09, 2025 \\ 
+Define user roles and permissions based on RTM & Joint (Scando Lead) & Jul 03, 2025 \\ 
+Prepare Data Migration Plan (detailed approach, templates) & Scando & Jul 09, 2025 \\
+Prepare Testing Environment (initial UAT Setup, pre-data replication) & Scando & Jul 10, 2025 \\ 
+Review and approve Data Migration Plan & Automata & Jul 10, 2025 \\
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Configured Odoo modules in a development/test environment (based on RTM)
+    \item Approved Data Migration Plan
+    \item Prepared initial Testing (UAT) Environment structure (pre-data)
+    \item User Roles and Permissions Matrix (Finalized)
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes upon Automata's approval of the Data Migration Plan and confirmation that the initial system configuration (standard modules) aligns with the RTM, and the UAT environment structure is ready.
+
+\subsubsection{Phase 4: Data Migration (Jul 13, 2025 - Jul 24, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Automata to provide cleansed master data (Vendors, Customers, Items, COA, Opening Balances) & Automata & Jul 16, 2025 \\ 
+Develop and test data migration scripts/tools (targeting Production) & Scando & Jul 17, 2025 \\ 
+Migrate master data to Odoo Online Production environment & Scando & Jul 20, 2025 \\ 
+Scando confirmation of data upload to Production & Scando & Jul 21, 2025 \\
+Replicate Production environment to create UAT/Staging environment & Scando & Jul 23, 2025 \\
+Scando confirmation of UAT/Staging environment readiness & Scando & Jul 24, 2025 \\ 
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Master data provided by Automata
+    \item Confirmation of master data successfully uploaded to the Production environment
+    \item UAT/Staging environment successfully replicated from Production and confirmed ready by Scando
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes upon Scando's confirmation that agreed master data has been uploaded to the Production environment and that the UAT/Staging environment has been successfully replicated and is ready for the next phase. No Automata sign-off is required for data validation in this phase.
+
+\subsubsection{Phase 5: User Acceptance Testing (UAT) (Jul 27, 2025 - Aug 21, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Develop UAT plan and detailed test cases/scenarios & Joint (Scando Lead) & Aug 01, 2025 \\ 
+Conduct UAT sessions with Automata Key Users and Process Owners (on replicated UAT/Staging environment) & Automata (Scando Support) & Aug 15, 2025 \\ 
+Log, track, and prioritize UAT issues/bugs & Joint & Ongoing \\
+Resolve UAT issues and re-test affected functionalities & Scando (Automata Retest) & Aug 21, 2025 \\ 
+Obtain formal UAT sign-off from Automata & Automata & Aug 21, 2025 \\ 
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Approved UAT Plan and Test Cases
+    \item UAT Issue Log with resolutions
+    \item Formal UAT Sign-off Document from Automata
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes upon formal UAT sign-off by Automata, indicating that the system (tested on the UAT/Staging environment) meets the agreed-upon requirements and is ready for the next phase.
+
+\subsubsection{Phase 6: Training and Support (Pre Go-Live) (Aug 24, 2025 - Sep 18, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Develop comprehensive training materials (user guides, manuals) & Scando & Sep 04, 2025 \\ 
+Review and approve training materials & Automata & Sep 11, 2025 \\ 
+Conduct end-user training sessions for all relevant Automata staff & Scando & Sep 18, 2025 \\ 
+Conduct Key User / System Administrator training & Scando & Sep 18, 2025 \\ 
+Prepare detailed Go-Live checklist and cutover plan & Scando & Sep 11, 2025 \\ 
+Perform final system checks and readiness assessment & Joint & Sep 18, 2025 \\ 
+Obtain final Go-Live approval from Automata Steering Committee & Automata & Sep 18, 2025 \\ 
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Approved Training Materials
+    \item Record of Completed Training Sessions
+    \item Approved Go-Live Plan and Checklist
+    \item Go/No-Go Decision from Steering Committee
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes with the formal approval from the Automata Steering Committee to proceed with the Go-Live.
+
+\subsubsection{Phase 7: Deployment and Go-Live (Sep 21, 2025)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Execute Go-Live cutover plan & Joint (Scando Lead) & Sep 21, 2025 \\
+Deploy final configurations to Odoo Online production environment (if any changes since data migration) & Scando & Sep 21, 2025 \\
+Perform final data loads/cutover activities (if any, beyond initial production load) & Joint & Sep 21, 2025 \\
+System Go-Live announcement & Joint & Sep 21, 2025 \\
+Provide immediate post-go-live (Day 1) support & Scando & Sep 21, 2025 \\
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Successfully deployed Odoo ERP system in the production environment
+    \item Go-Live Communication to all stakeholders
+\end{itemize}
+\textbf{Phase Conclusion:} This phase concludes once the system is live in the production environment and accessible to Automata users.
+
+\subsubsection{Phase 8: Monitoring and Evaluation (Post Go-Live Support) (Sep 22, 2025 - Mar 05, 2026)}
+\begin{tabularx}{\linewidth}{@{}p{0.5\linewidth} l >{\RaggedRight\arraybackslash}X@{}}
+\toprule
+\textbf{Main Task} & \textbf{Responsible Party} & \textbf{Target Due Date} \\
+\midrule
+Provide dedicated post-go-live support (hyper-care period - first 4 weeks) & Scando & Oct 16, 2025 \\
+Monitor system performance, stability, and adoption rates & Scando & Ongoing \\
+Address and resolve post-go-live issues and bugs promptly & Scando & Ongoing \\
+Gather user feedback for system optimization and future enhancements & Joint & Ongoing \\
+Conduct periodic system health checks and performance reviews & Scando & Monthly/Quarterly \\
+Fine-tune configurations and workflows based on live operational usage & Scando & As needed \\
+Ongoing knowledge transfer to Automata IT/Super Users & Scando & Ongoing \\
+Prepare project closure report detailing outcomes and lessons learned & Scando & Feb 19, 2026 \\ 
+Conduct final project review and obtain formal project sign-off & Joint (Automata Lead) & Mar 05, 2026 \\ 
+\bottomrule
+\end{tabularx}
+\vspace{0.5em}
+\textbf{Key Deliverables for this Phase:}
+\begin{itemize}
+    \item Stable and operational production system
+    \item Resolved post-go-live issues log
+    \item User feedback and optimization log
+    \item Project Closure Report
+    \item Formal Project Sign-off from Automata
+\end{itemize}
+\textbf{Phase Conclusion:} This phase, and the project, concludes upon formal sign-off of the Project Closure Report by the Automata Project Sponsor, signifying that all agreed deliverables have been met and the system is operating as expected.

@@ -1,0 +1,234 @@
+\documentclass[11pt,a4paper]{article}
+\documentclass{article}
+\usepackage{enumitem}
+\setlistdepth{9}
+\renewlist{itemize}{itemize}{9}
+\renewlist{enumerate}{enumerate}{9}
+%----------------------------------------------------------------------------------------
+%   PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx} % Keep for potential complex layouts
+\usepackage{tabularray}
+\usepackage{array}
+\usepackage{sectsty}
+\usepackage{parskip}
+\usepackage{longtable}
+\usepackage{booktabs} % For \toprule, \midrule, \bottomrule in tables
+\usepackage{xcolor}
+\usepackage{tocloft}
+\usepackage{tikz} % For custom symbols like '>' if needed
+\usepackage{fancyhdr}
+\usepackage{ragged2e} % For \RaggedRight
+
+%----------------------------------------------------------------------------------------
+%   COLOR DEFINITIONS
+%----------------------------------------------------------------------------------------
+\definecolor{scandoblue}{RGB}{0,86,148} % Main blue from template
+\definecolor{scandobluedark}{RGB}{0,51,102} % Darker blue for headings from HTML styles
+\definecolor{scandobluemedium}{RGB}{0,90,156} % Medium blue for subheadings from HTML styles
+\definecolor{scandobluelight}{RGB}{230,240,247} % Light blue for backgrounds from HTML styles
+\definecolor{scandotextdark}{RGB}{26,32,44} % Very dark gray for body text from HTML styles
+\definecolor{lightgraybg}{RGB}{245,245,245}
+\definecolor{graytext}{RGB}{100,100,100}
+
+
+%----------------------------------------------------------------------------------------
+%   FONT CONFIGURATION - MONTSERRAT
+%----------------------------------------------------------------------------------------
+\setmainfont{Montserrat}[
+    Path = fonts/, % Tells fontspec to look in the 'fonts' subfolder
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+    % Add other weights if you have them and need them, e.g. Light, Medium, SemiBold
+    % Example: LightFont = *-Light
+]
+\setsansfont{Montserrat}[
+    Path = fonts/, % Tells fontspec to look in the 'fonts' subfolder
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+    % Add other weights if you have them and need them
+]
+\setmonofont{TeX Gyre Cursor} % Standard mono font
+
+%----------------------------------------------------------------------------------------
+%   PAGE LAYOUT
+%----------------------------------------------------------------------------------------
+\geometry{
+    a4paper,
+    left=20mm,
+    right=20mm,
+    top=25mm,
+    bottom=25mm,
+    headheight=25mm, % Increased to accommodate header content
+    headsep=10mm,
+    footskip=15mm
+}
+\setlength{\parindent}{0pt} % No paragraph indentation
+\setlength{\parskip}{0.5em} % Space between paragraphs
+
+%----------------------------------------------------------------------------------------
+%   SECTION STYLING (Using scandoblue from template)
+%----------------------------------------------------------------------------------------
+\allsectionsfont{\sffamily\color{scandoblue}} % Make all section titles sans-serif and blue
+\sectionfont{\sffamily\bfseries\color{scandoblue}\Large}
+\subsectionfont{\sffamily\bfseries\color{scandoblue}\large}
+\subsubsectionfont{\sffamily\bfseries\color{scandoblue}\normalsize}
+
+%----------------------------------------------------------------------------------------
+%   PAGE HEADER AND FOOTER
+%----------------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{} % Clear all header and footer fields
+\fancyhead[L]{\sffamily\color{scandoblue}Automata - Project Charter} % Updated header
+\fancyhead[R]{\sffamily\color{scandoblue}Jan 2026} % Updated date based on HTML content
+\renewcommand{\headrulewidth}{0.2pt}
+\fancyfoot[R]{\sffamily\thepage}
+\renewcommand{\footrulewidth}{0.1pt}
+
+%----------------------------------------------------------------------------------------
+%   HYPERREF SETUP
+%----------------------------------------------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=scandoblue,
+    filecolor=magenta,
+    urlcolor=scandoblue,
+    pdftitle={Project Charter: Automata Odoo ERP System Implementation}, % Updated PDF title
+    pdfpagemode=FullScreen,
+    pdfauthor={Scando Integrated Solutions & Automata}, % Updated author
+}
+
+%----------------------------------------------------------------------------------------
+%   TABLE OF CONTENTS CUSTOMIZATIONS
+%----------------------------------------------------------------------------------------
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\sffamily\color{scandoblue}} % Style ToC title
+\setcounter{tocdepth}{3} % Show up to subsubsections
+
+% Customizing list environments for tighter spacing
+\setlist[itemize]{nosep, itemsep=0.2em, topsep=0.3em, partopsep=0em, leftmargin=*}
+\setlist[enumerate]{nosep, itemsep=0.2em, topsep=0.3em, partopsep=0em, leftmargin=*}
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT START
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\begin{titlepage}
+    \thispagestyle{empty} % No headers or footers
+    \sffamily % Use sans-serif font for title page
+
+    % Top section: Logo, "Project Charter", Date
+    \noindent
+    \begin{tblr}{
+        width = \linewidth,
+        colspec = {Q[l, wd=50mm, valign=m] X[r, valign=m]}, % Use valign=m for middle alignment
+        }
+        \includegraphics[width=45mm]{images/scando_logo.png} % Assuming logo is in images/
+        &
+        {\bfseries\color{scandoblue} Project Charter\\ [2mm] \small\color{black} Jan 2026} % Updated title and date
+    \end{tblr}
+    
+    \vspace{25mm} % Adjusted spacing
+
+    % Main Title
+    \begin{center} % Center the main title block
+        {\bfseries\color{scandobluedark}\Huge Project Charter\par} % Updated main title
+        \vspace{5mm}
+        {\large\bfseries\color{scandobluemedium} Automata Odoo ERP System Implementation\par} % Project Name
+    \end{center}
+    
+    \vspace{20mm} % Adjusted spacing
+
+    % Prepared For
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth} % Adjust width as needed
+        \RaggedRight % Use RaggedRight for left alignment without full justification
+        {\bfseries\color{scandoblue} Prepared For:} \\
+        \vspace{2mm}
+        Dr. Hanaa Tharwat \\
+        Project Manager \\
+        Automata System Integration Solution (Automata)
+    \end{minipage}
+    \hfill % Pushes the next minipage to the right if there was one
+    
+    \vspace{25mm} % Pushes content further down
+
+    % "Inside This Charter" Block
+    \noindent % Ensure it starts from the left margin
+    \begin{minipage}{0.7\textwidth} 
+        {\bfseries\color{scandoblue} Inside This Charter:}
+        \vspace{2mm}
+        \begin{itemize}[leftmargin=5mm, labelsep=3mm, itemsep=1mm, parsep=0mm, topsep=0mm]
+            \item Document Overview and Executive Summary
+            \item Project Goals, Objectives, and Business Drivers
+            \item Detailed Project Scope and Deliverables
+            \item Project Organization and Stakeholder Roles
+            \item High-Level Project Plan and Approach
+            \item Approval Framework
+        \end{itemize}
+    \end{minipage}
+
+    \vfill % Pushes footer content to the bottom
+
+    % Footer Area
+    {\small % Make all footer text small
+    \noindent % Prevent indentation for the rule
+    \textcolor{graytext!50}{\rule{\textwidth}{0.1pt}} % Light rule
+    \vspace{2mm}
+
+    \begin{tblr}{width=\linewidth, colspec={X[l] X[r]}} % Using tblr for better control
+        {\textbf{Scando Integrated Solutions}\\ www.scandosolutions.com}
+        &
+        \includegraphics[width=25mm]{images/odoo_logo.png} % Assuming logo
+    \end{tblr}
+    \vspace{2mm}
+    
+    {\fontsize{7}{9}\selectfont % Smaller font size for disclaimer
+    Disclaimer: This document is intended for the exclusive use of the recipient and may contain confidential or privileged information. Any unauthorized use, disclosure, or copying of this document is strictly prohibited and may result in legal action.\par}
+    } % End small scope for footer
+
+\end{titlepage}
+\clearpage
+\pagenumbering{Roman} % Roman numerals for ToC, etc.
+
+%----------------------------------------------------------------------------------------
+%   TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+\tableofcontents
+\newpage
+\pagenumbering{arabic} % Arabic numerals for main content
+\setcounter{page}{1} % Start page numbering at 1 for main content
+
+%----------------------------------------------------------------------------------------
+%   CHARTER CONTENT - INPUT SECTIONS (Revised Structure)
+%----------------------------------------------------------------------------------------
+
+\input{content/0100_document_history}      % Corresponds to PDF Template Section 2
+\input{content/0200_executive_summary}   % Corresponds to PDF Template Section 3
+\input{content/0300_scope_of_work}         % Corresponds to PDF Template Section 4 (includes scope, deliverables, risks, etc.)
+\input{content/0400_project_organization} % Corresponds to PDF Template Section 5
+\input{content/0500_project_plan}            % Corresponds to PDF Template Section 6
+\input{content/0600_project_approvals}    % Corresponds to PDF Template Section 7
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT END
+%----------------------------------------------------------------------------------------
+\end{document}
