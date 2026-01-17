@@ -1,26 +1,39 @@
-/* Global CSS Variables */
+/* Global CSS Variables - Enhanced Arabic Palette */
 :root {
     --primary-navy: #051C33;
     --accent-gold: #C9A96E;
     --accent-burgundy: #8B1538;
+    --accent-cyan: #2A9D8F;
+    --accent-terracotta: #C75B39;
     --bg-light: #FBF9F5;
     --bg-cream: #FFF9F0;
+    --bg-parchment: #F5EDE0;
     --text-dark: #1E293B;
     --text-muted: #64748B;
     --white: #FFFFFF;
+    
+    /* Arabic Pattern Colors */
+    --pattern-gold: rgba(201, 169, 110, 0.08);
+    --pattern-navy: rgba(5, 28, 51, 0.03);
 }
 
 /* Base Styles */
 * { box-sizing: border-box; }
 
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
+
 body {
     background-color: #E2E8F0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(201, 169, 110, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(5, 28, 51, 0.08) 0%, transparent 50%);
     margin: 0;
     padding: 0;
     font-family: 'Tajawal', sans-serif;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
 }
 
 /* Body for slide pages */
@@ -30,24 +43,60 @@ body.slide-page {
     align-items: center;
     padding: 0;
     min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Arabic Geometric Pattern - SVG Background */
+.arabic-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.04;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23C9A96E' fill-opacity='1'%3E%3Cpath d='M40 0L48.284 11.716L60 20L48.284 28.284L40 40L31.716 28.284L20 20L31.716 11.716L40 0zM0 40L8.284 51.716L20 60L8.284 68.284L0 80L-8.284 68.284L-20 60L-8.284 51.716L0 40zM80 40L88.284 51.716L100 60L88.284 68.284L80 80L71.716 68.284L60 60L71.716 51.716L80 40z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
 }
 
 /* Slide Container */
 .slide {
-    width: calc(100vw - 80px);
-    max-width: 1280px;
-    height: calc(100vh - 140px);
+    width: calc(100vw - 40px);
+    max-width: 1600px;
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
     background: var(--white);
-    border-radius: 32px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    border-radius: 24px;
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(201, 169, 110, 0.1);
     display: flex;
     flex-direction: column;
-    padding: 60px 80px;
+    padding: 50px 70px;
     position: relative;
     overflow-y: auto;
     overflow-x: hidden;
-    border-bottom: 10px solid var(--accent-gold);
-    margin: 20px auto;
+    border-bottom: 8px solid var(--accent-gold);
+    margin: 10px auto;
+    /* Slide entrance animation */
+    animation: slideEnterRTL 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* RTL-aware slide entrance animation */
+@keyframes slideEnterRTL {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Corner decoration - removed per user request */
+.slide::before {
+    display: none;
 }
 
 .content-area { width: 100%; overflow-x: auto; }
@@ -58,15 +107,30 @@ body.slide-page {
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
-    background: linear-gradient(to left, rgba(5, 28, 51, 0.03), rgba(201, 169, 110, 0.08));
+    height: 90px;
+    background: 
+        linear-gradient(to left, rgba(5, 28, 51, 0.03), rgba(201, 169, 110, 0.08)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath fill='%23C9A96E' fill-opacity='0.03' d='M30 0l7.5 7.5L30 15l-7.5-7.5L30 0zm0 45l7.5 7.5L30 60l-7.5-7.5L30 45zM0 30l7.5-7.5L15 30l-7.5 7.5L0 30zm45 0l7.5-7.5L60 30l-7.5 7.5L45 30z'/%3E%3C/svg%3E");
     border-bottom: 3px solid var(--accent-gold);
-    border-radius: 32px 32px 0 0;
+    border-radius: 24px 24px 0 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
     z-index: 10;
+}
+
+/* Decorative header border ornament */
+.slide-header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 6px;
+    background: var(--accent-burgundy);
+    border-radius: 3px 3px 0 0;
 }
 
 .slide-header-logo {
@@ -99,27 +163,52 @@ body.slide-page {
 
 /* Adjust slide padding to accommodate header */
 .slide:not(.hero-slide) {
-    padding-top: 140px;
-    padding-bottom: 80px;
+    padding-top: 120px;
+    padding-bottom: 60px;
 }
 
 /* Typography */
 .slide-title {
+    font-family: 'Aref Ruqaa', 'Tajawal', serif;
     font-size: 44px;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--primary-navy);
     margin-bottom: 30px;
     border-right: 15px solid var(--accent-gold);
     padding-right: 25px;
-    line-height: 1.2;
+    line-height: 1.3;
+    position: relative;
+}
+
+/* Decorative dot accent on title */
+.slide-title::after {
+    content: '◆';
+    position: absolute;
+    right: -22px;
+    bottom: 0;
+    font-size: 12px;
+    color: var(--accent-burgundy);
 }
 
 h3 { 
+    font-family: 'Aref Ruqaa', 'Tajawal', serif;
     color: var(--accent-burgundy); 
     font-size: 28px; 
     margin-bottom: 20px; 
-    border-bottom: 2px solid #f0f0f0; 
-    padding-bottom: 10px; 
+    border-bottom: 2px solid rgba(201, 169, 110, 0.3); 
+    padding-bottom: 10px;
+    position: relative;
+}
+
+/* Ornamental underline for h3 */
+h3::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent-burgundy);
 }
 
 p, li { 
@@ -143,28 +232,66 @@ p, li {
 
 /* Cards */
 .info-card {
-    background: var(--bg-light);
+    background: 
+        linear-gradient(135deg, var(--bg-light) 0%, var(--bg-parchment) 100%);
     padding: 30px;
     border-radius: 20px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid rgba(201, 169, 110, 0.2);
     border-right: 5px solid var(--accent-gold);
     height: 100%;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle corner pattern on cards */
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23C9A96E' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23C9A96E' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='%23C9A96E' stroke-width='2'/%3E%3C/svg%3E");
+    pointer-events: none;
 }
 
 .info-card:hover {
     border-right-width: 8px;
-    box-shadow: 0 10px 20px rgba(201, 169, 110, 0.2);
+    box-shadow: 0 10px 30px rgba(201, 169, 110, 0.25);
+    transform: translateY(-3px);
 }
 
 .team-card {
-    background: var(--bg-light);
+    background: 
+        linear-gradient(180deg, var(--bg-light) 0%, var(--bg-parchment) 100%);
     padding: 30px;
     border-radius: 20px;
     text-align: center;
     border-right: 5px solid var(--primary-navy);
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative arch pattern on team cards */
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--accent-gold) 20%, 
+        var(--accent-gold) 80%, 
+        transparent 100%
+    );
+    opacity: 0.4;
 }
 
 .team-card:hover { 
@@ -231,23 +358,83 @@ p, li {
 
 /* Hero Slides */
 .hero-slide {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, #0A2D4F 100%);
+    background: 
+        linear-gradient(135deg, var(--primary-navy) 0%, #0A2D4F 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23C9A96E' fill-opacity='0.05' d='M50 0L62.5 12.5L50 25L37.5 12.5L50 0zM25 25L37.5 37.5L25 50L12.5 37.5L25 25zM75 25L87.5 37.5L75 50L62.5 37.5L75 25zM50 50L62.5 62.5L50 75L37.5 62.5L50 50zM25 75L37.5 87.5L25 100L12.5 87.5L25 75zM75 75L87.5 87.5L75 100L62.5 87.5L75 75zM0 50L12.5 62.5L0 75L-12.5 62.5L0 50zM100 50L112.5 62.5L100 75L87.5 62.5L100 50z'/%3E%3C/svg%3E");
     color: white;
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative;
+}
+
+/* Decorative frame on hero slides */
+.hero-slide::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    border: 2px solid rgba(201, 169, 110, 0.2);
+    border-radius: 20px;
+    pointer-events: none;
 }
 
 .hero-slide h1 { 
+    font-family: 'Aref Ruqaa', 'Tajawal', serif;
     font-size: 65px; 
     color: white; 
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
 .hero-slide p { 
     color: var(--accent-gold); 
     font-size: 32px; 
-    font-weight: 500; 
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero slide icon */
+.hero-icon {
+    font-size: 100px;
+    color: var(--accent-cyan);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 10px rgba(42, 157, 143, 0.3));
+    }
+    50% { 
+        filter: drop-shadow(0 0 25px rgba(42, 157, 143, 0.6));
+    }
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+    margin-top: 50px;
+    font-size: 18px;
+    opacity: 0.6;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero footer with decorative border */
+.hero-footer {
+    margin-top: 60px;
+    font-size: 20px;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 30px;
 }
 
 /* Price Tag */
@@ -259,143 +446,195 @@ p, li {
 }
 
 /* Responsive Design - Tablet */
-@media (max-width: 900px) {0; }
+@media (max-width: 900px) {
     
     .slide {
-        width: calc(100vw - 40px);
-        height: calc(100vh - 140px);
-        margin: 10px auto;
-        border-radius: 24px;
+        width: calc(100vw - 24px);
+        height: calc(100vh - 50px);
+        height: calc(100dvh - 50px);
+        margin: 5px auto;
+        border-radius: 20px;
+        padding: 40px 30px;
     }
     
-    .slide-header {
-        border-radius: 24px 24px 0 0
-        max-height: calc(100vh - 30px);
-    }
-    
-    .slide:not(.hero-slide) {
-        padding: 110px 24px 70px;
-    }
-    
-    .slide-header {
+    .slide::before {
+        width: 80px;
         height: 80px;
+    }
+    
+    .slide-header {
+        border-radius: 20px 20px 0 0;
+        height: 70px;
         padding: 0 20px;
     }
     
+    .slide:not(.hero-slide) {
+        padding: 100px 24px 50px;
+    }
+    
     .slide-header-logo {
-        width: 150px;
-        height: 60px;
+        width: 140px;
+        height: 55px;
     }
     
     .slide-header-title {
-        font-size: 16px;
-        max-width: 400px;
+        font-size: 15px;
+        max-width: 350px;
     }
     
     .slide-footer {
-        font-size: 14px;
+        font-size: 13px;
         left: 20px;
         right: 20px;
     }
     
     .slide-title { 
-        font-size: 32px; 
-        padding-right: 18px; 
-        margin-bottom: 22px; 
+        font-size: 30px; 
+        padding-right: 16px; 
+        margin-bottom: 20px; 
     }
     
-    h3 { font-size: 22px; }
+    .slide-title::after {
+        right: -14px;
+        font-size: 9px;
+    }
+    
+    h3 { font-size: 21px; }
     
     p, li { 
-        font-size: 18px; 
+        font-size: 17px; 
         line-height: 1.7; 
     }
     
     .grid-2, .grid-3 { 
         grid-template-columns: 1fr; 
-        gap: 24px; 
+        gap: 20px; 
     }
     
-    .hero-slide h1 { font-size: 42px; }
-    .hero-slide p { font-size: 24px; }
-    .price-tag { font-size: 58px; }
+    .hero-slide h1 { font-size: 38px; }
+    .hero-slide p { font-size: 22px; }
+    .price-tag { font-size: 54px; }
+    
+    .hero-slide::after {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+    }
     
     .timeline-box th { 
-        font-size: 17px; 
-        padding: 14px; 
+        font-size: 16px; 
+        padding: 12px; 
     }
     
     .timeline-box td { 
-        font-size0;
+        font-size: 14px;
+        padding: 12px;
     }
     
-    .slide {
-        width: calc(100vw - 20px);
-        height: calc(100vh - 130px);
-        border-radius: 20px;
-        margin: 5px auto;
+    .info-card::before {
+        width: 60px;
+        height: 60px;
     }
-    
-    .slide-header {
-        border-radius: 20px 20px 0 0
+}
+/* Responsive Design - Mobile */
 @media (max-width: 560px) {
     body.slide-page { 
-        padding: 10px;
+        padding: 5px;
     }
     
     .slide {
-        border-radius: 16px;
-        max-height: calc(100vh - 20px);
+        width: calc(100vw - 12px);
+        height: calc(100dvh - 45px);
+        border-radius: 14px;
+        max-height: calc(100dvh - 12px);
+    }
+    
+    .slide::before {
+        width: 50px;
+        height: 50px;
+        opacity: 0.04;
     }
     
     .slide:not(.hero-slide) {
-        padding: 90px 18px 60px;
+        padding: 80px 16px 45px;
     }
     
     .slide-header {
-        height: 70px;
-        padding: 0 15px;
+        height: 60px;
+        padding: 0 12px;
+        border-radius: 14px 14px 0 0;
+    }
+    
+    .slide-header::after {
+        width: 40px;
+        height: 4px;
     }
     
     .slide-header-logo {
-        width: 120px;
-        height: 50px;
+        width: 100px;
+        height: 45px;
     }
     
     .slide-header-title {
-        font-size: 14px;
-        max-width: 200px;
+        font-size: 13px;
+        max-width: 180px;
     }
     
     .slide-footer {
-        font-size: 12px;
-        left: 15px;
-        right: 15px;
+        font-size: 11px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
     }
     
     .slide-title {
-        font-size: 26px;
-        padding-right: 14px;
-        margin-bottom: 18px;
-        border-right-width: 10px;
+        font-size: 24px;
+        padding-right: 12px;
+        margin-bottom: 16px;
+        border-right-width: 8px;
     }
     
-    h3 { font-size: 20px; }
+    .slide-title::after {
+        display: none;
+    }
+    
+    h3 { font-size: 19px; }
+    
+    h3::after {
+        width: 40px;
+    }
     
     p, li { 
-        font-size: 16px; 
+        font-size: 15px; 
         line-height: 1.6; 
     }
     
-    .bullet-list li { padding-right: 28px; }
-    .bullet-list li::before { font-size: 18px; }
+    .bullet-list li { padding-right: 26px; }
+    .bullet-list li::before { font-size: 16px; }
     
-    .grid-2, .grid-3 { gap: 18px; }
+    .grid-2, .grid-3 { gap: 16px; }
     
-    .info-card, .team-card { padding: 20px; }
+    .info-card, .team-card { padding: 18px; }
     
-    .hero-slide h1 { font-size: 32px; }
-    .hero-slide p { font-size: 18px; }
+    .info-card::before {
+        display: none;
+    }
+    
+    .team-card::before {
+        height: 5px;
+    }
+    
+    .hero-slide h1 { font-size: 28px; }
+    .hero-slide p { font-size: 17px; }
+    
+    .hero-slide::after {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        border-width: 1px;
+    }
     
     .price-tag { 
         font-size: 46px; 
@@ -424,7 +663,7 @@ p, li {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .slide {
@@ -435,56 +674,48 @@ p, li {
     display: flex;
 }
 
-/* Navigation Controls */
+/* Navigation Controls - Minimal Footer Style */
 .nav-controls {
     position: fixed;
-    bottom: 30px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 25px;
+    gap: 12px;
     align-items: center;
     z-index: 1000;
-    background: linear-gradient(135deg, rgba(5, 28, 51, 0.98), rgba(10, 35, 55, 0.98));
-    padding: 18px 45px;
-    border-radius: 60px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 169, 110, 0.3);
-    border: 2px solid rgba(201, 169, 110, 0.25);
-    backdrop-filter: blur(10px);
+    background: transparent;
+    padding: 0;
     direction: ltr;
 }
 
 .nav-btn {
-    background: linear-gradient(135deg, var(--accent-gold), #B89860);
-    color: white;
-    border: 2px solid #D4AF37;
-    width: 54px;
-    height: 54px;
+    background: rgba(5, 28, 51, 0.7);
+    color: var(--accent-gold);
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(201, 169, 110, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    position: relative;
+    backdrop-filter: blur(8px);
 }
 
 .nav-btn:hover {
-    background: linear-gradient(135deg, #D4AF37, #E5C158);
-    transform: scale(1.15);
-    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.7), 0 0 35px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    border-color: #E5C158;
+    background: var(--accent-gold);
+    color: var(--primary-navy);
+    transform: scale(1.1);
 }
 
 .nav-btn:disabled {
-    background: linear-gradient(135deg, #64748B, #475569);
+    background: rgba(100, 116, 139, 0.4);
+    color: rgba(255,255,255,0.3);
     cursor: not-allowed;
-    opacity: 0.4;
-    border-color: #64748B;
-    box-shadow: none;
-}
+    border-color: transparent;
 }
 
 .nav-btn:disabled:hover {
@@ -492,34 +723,21 @@ p, li {
 }
 
 .slide-counter {
-    color: var(--accent-gold);
-    font-size: 20px;
-    font-weight: 700;
-    min-width: 90px;
+    color: var(--primary-navy);
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 50px;
     text-align: center;
-    padding: 0 15px;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    position: relative;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(201, 169, 110, 0.3);
 }
 
 .slide-counter::before,
 .slide-counter::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 30px;
-    background: linear-gradient(to bottom, transparent, rgba(201, 169, 110, 0.5), transparent);
-}
-
-.slide-counter::before {
-    left: 0;
-}
-
-.slide-counter::after {
-    right: 0;
+    display: none;
 }
 
 /* Progress Bar */
@@ -534,74 +752,281 @@ p, li {
     z-index: 1001;
 }
 
-/* Slide Number Badge */
+/* Slide Number Badge - Hidden, counter moved to nav */
 .slide-number {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    background: var(--primary-navy);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    z-index: 20;
-}
-
-.hero-slide .slide-number {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    display: none;
 }
 
 /* Responsive Navigation */
 @media (max-width: 900px) {
     .nav-controls {
-        bottom: 20px;
-        padding: 12px 24px;
-        gap: 15px;
+        bottom: 6px;
+        gap: 10px;
     }
     
     .nav-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
     }
     
     .slide-counter {
-        font-size: 16px;
-        min-width: 70px;
-    }
-    
-    .slide-number {
-        top: 15px;
-        right: 20px;
         font-size: 12px;
-        padding: 6px 12px;
+        min-width: 45px;
+        padding: 5px 10px;
     }
 }
 
 @media (max-width: 560px) {
     .nav-controls {
-        bottom: 15px;
-        padding: 10px 20px;
-        gap: 12px;
+        bottom: 4px;
+        gap: 8px;
     }
     
     .nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
     }
     
     .slide-counter {
-        font-size: 14px;
-        min-width: 60px;
+        font-size: 11px;
+        min-width: 40px;
+        padding: 4px 8px;
+    }
+}
+
+/* Extra Small Phones */
+@media (max-width: 400px) {
+    .slide {
+        width: calc(100vw - 8px);
+        border-radius: 12px;
+        padding: 70px 10px 40px;
     }
     
-    .slide-number {
-        top: 10px;
-        right: 15px;
+    .slide-header {
+        height: 55px;
+        padding: 0 8px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .slide-header-logo {
+        width: 80px;
+        height: 36px;
+    }
+    
+    .slide-header-title {
         font-size: 11px;
-        padding: 5px 10px;
+        max-width: 140px;
+    }
+    
+    .slide-title {
+        font-size: 20px;
+        padding-right: 10px;
+        border-right-width: 6px;
+    }
+    
+    h3 { font-size: 17px; }
+    
+    p, li { 
+        font-size: 14px; 
+        line-height: 1.5;
+    }
+    
+    .hero-slide h1 { font-size: 22px; }
+    .hero-slide p { font-size: 15px; }
+    
+    .price-tag { font-size: 36px; }
+    
+    .nav-controls {
+        gap: 6px;
+    }
+    
+    .nav-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 10px;
+    }
+    
+    .slide-counter {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+    
+    .timeline-box th,
+    .timeline-box td {
+        font-size: 11px;
+        padding: 6px 3px;
+    }
+}
+
+/* Utility Classes for Inline Style Replacement */
+.text-accent-cyan {
+    color: var(--accent-cyan);
+    font-weight: bold;
+}
+
+.text-accent-gold {
+    color: var(--accent-gold);
+}
+
+.text-accent-burgundy {
+    color: var(--accent-burgundy);
+}
+
+.bg-accent-cyan {
+    background: var(--accent-cyan);
+    color: white;
+}
+
+.support-note {
+    text-align: center;
+    background: var(--bg-parchment);
+    border-radius: 15px;
+    border: 1px dashed var(--accent-gold);
+    padding: 18px 20px;
+    margin-top: 15px;
+}
+
+.support-note p {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Team card title styling */
+.team-card h4 {
+    font-family: 'Aref Ruqaa', 'Tajawal', serif;
+    font-size: 24px;
+    color: var(--primary-navy);
+    margin: 10px 0;
+}
+
+.team-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* Horizontal scroll hint for tables on mobile */
+@media (max-width: 560px) {
+    .timeline-box {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .timeline-box::after {
+        content: '← اسحب للمزيد →';
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-muted);
+        padding: 8px;
+        opacity: 0.7;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .nav-controls,
+    .progress-bar,
+    .slide-number {
+        display: none !important;
+    }
+    
+    .slide {
+        box-shadow: none;
+        border-radius: 0;
+        page-break-after: always;
+        height: auto;
+        min-height: 100vh;
+    }
+}
+
+/* Folder section - for slide 6 */
+.folder-section {
+    background: var(--primary-navy);
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.folder-section i {
+    font-size: 100px;
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+}
+
+.folder-section h2 {
+    font-family: 'Aref Ruqaa', 'Tajawal', serif;
+    font-size: 30px;
+    margin: 12px 0;
+}
+
+.folder-section p {
+    color: #CBD5E1;
+}
+
+/* Column wrapper for stacked cards */
+.column-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Price card styling */
+.price-card {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-card p {
+    font-size: 22px;
+}
+
+.price-card .price-currency {
+    color: var(--primary-navy);
+}
+
+/* Compact slide adjustments */
+.slide-compact {
+    padding: 50px 60px !important;
+}
+
+.slide-compact .slide-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 560px) {
+    .folder-section {
+        padding: 25px;
+        border-radius: 20px;
+    }
+    
+    .folder-section i {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .folder-section h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 400px) {
+    .folder-section i {
+        font-size: 45px;
+    }
+    
+    .folder-section h2 {
+        font-size: 20px;
     }
 }
