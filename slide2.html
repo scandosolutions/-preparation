@@ -58,6 +58,38 @@
             font-size: 11px;
             bottom: 8px;
         }
+        
+        /* Landscape mobile/tablet override for slide 2 */
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .slide-title {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            .grid-2 {
+                gap: 10px;
+                height: calc(100% - 60px);
+            }
+            .column-wrapper {
+                gap: 8px;
+            }
+            .info-card {
+                padding: 10px 12px;
+            }
+            .info-card h3 {
+                font-size: 14px;
+                margin-bottom: 6px;
+                padding-bottom: 4px;
+            }
+            .bullet-list li {
+                font-size: 11px;
+                line-height: 1.4;
+                margin-bottom: 3px;
+                padding-right: 20px;
+            }
+            .bullet-list li::before {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body class="slide-page">
