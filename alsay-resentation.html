@@ -8,191 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --primary-navy: #051C33;
-            --accent-cyan: #00A3FF;
-            --bg-light: #F8FAFC;
-            --text-dark: #1E293B;
-            --text-muted: #64748B;
-            --white: #FFFFFF;
-        }
-
-        * { box-sizing: border-box; }
-        body {
-            background-color: #E2E8F0;
-            margin: 0;
-            padding: 40px 0;
-            font-family: 'Tajawal', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .slide {
-            width: min(1280px, calc(100% - 32px));
-            min-height: 720px;
-            background: var(--white);
-            border-radius: 24px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            padding: 60px 80px;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 10px solid var(--accent-cyan);
-        }
-
-        .content-area { width: 100%; overflow-x: auto; }
-
-        /* Company logo pinned to every slide */
-        .slide::before {
-            content: "";
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 280px;
-            height: 140px;
-            background: url('5.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.9;
-            pointer-events: none;
-        }
-
-        @media (max-width: 900px) {
-            body { padding: 20px 0; }
-            .slide {
-                min-height: auto;
-                padding: 28px 24px 40px;
-            }
-            .slide::before {
-                width: 180px;
-                height: 90px;
-            }
-            .slide-title { font-size: 32px; padding-right: 18px; margin-bottom: 22px; }
-            h3 { font-size: 22px; }
-            p, li { font-size: 18px; line-height: 1.7; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 24px; }
-            .hero-slide h1 { font-size: 42px; }
-            .hero-slide p { font-size: 24px; }
-            .price-tag { font-size: 58px; }
-            .timeline-box th { font-size: 17px; padding: 14px; }
-            .timeline-box td { font-size: 15px; padding: 14px; }
-        }
-
-        @media (max-width: 560px) {
-            body { padding: 12px 0; gap: 28px; }
-            .slide {
-                padding: 20px 18px 28px;
-                border-radius: 16px;
-                width: calc(100% - 16px);
-            }
-            .slide::before {
-                top: 12px;
-                left: 12px;
-                width: 140px;
-                height: 70px;
-            }
-            .slide-title {
-                font-size: 26px;
-                padding-right: 14px;
-                margin-bottom: 18px;
-                border-right-width: 10px;
-            }
-            h3 { font-size: 20px; }
-            p, li { font-size: 16px; line-height: 1.6; }
-            .bullet-list li { padding-right: 28px; }
-            .bullet-list li::before { font-size: 18px; }
-            .grid-2, .grid-3 { gap: 18px; }
-            .info-card, .team-card { padding: 20px; }
-            .hero-slide h1 { font-size: 32px; }
-            .hero-slide p { font-size: 18px; }
-            .price-tag { font-size: 46px; margin: 12px 0; }
-            .timeline-box th { font-size: 15px; padding: 12px; }
-            .timeline-box td { font-size: 14px; padding: 12px; }
-        }
-
-        .slide-title {
-            font-size: 44px;
-            font-weight: 800;
-            color: var(--primary-navy);
-            margin-bottom: 30px;
-            border-right: 15px solid var(--accent-cyan);
-            padding-right: 25px;
-            line-height: 1.2;
-        }
-
-        h3 { color: var(--accent-cyan); font-size: 28px; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
-        p, li { font-size: 21px; line-height: 1.8; color: var(--text-dark); }
-
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-
-        .info-card {
-            background: var(--bg-light);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid #E2E8F0;
-            height: 100%;
-        }
-
-        .team-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border-top: 5px solid var(--primary-navy);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        .team-card:hover { transform: translateY(-10px); border-top-color: var(--accent-cyan); }
-        .team-icon { font-size: 50px; color: var(--accent-cyan); margin-bottom: 20px; }
-
-        .bullet-list { list-style: none; padding: 0; margin: 0; }
-        .bullet-list li { position: relative; padding-right: 35px; margin-bottom: 15px; }
-        .bullet-list li::before {
-            content: "\f058";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            right: 0;
-            color: var(--accent-cyan);
-            font-size: 22px;
-        }
-
-        .timeline-box {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .timeline-box th { background: var(--primary-navy); color: white; padding: 20px; font-size: 20px; }
-        .timeline-box td { border: 1px solid #e0e0e0; padding: 20px; font-size: 18px; }
-        .active-cell { background: rgba(0, 163, 255, 0.1); color: var(--primary-navy); font-weight: 700; text-align: center; }
-
-        .hero-slide {
-            background: linear-gradient(135deg, var(--primary-navy) 0%, #0A2D4F 100%);
-            color: white;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .hero-slide h1 { font-size: 65px; color: white; margin-bottom: 20px; }
-        .hero-slide p { color: var(--accent-cyan); font-size: 32px; font-weight: 500; }
-        
-        .price-tag {
-            font-size: 80px;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin: 20px 0;
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="presentation-container">
+
 <!-- 1. شريحة العنوان -->
-<div class="slide hero-slide">
+<div class="slide hero-slide active" data-slide="1">
+    <div class="slide-number">1 / 8</div>
     <h1>استراتيجية تقييم الوضع الراهن وبناء المخطط العام</h1>
     <p>بناء المرجعية المؤسسية والتحول الرقمي لشركة "عبدربه الصي"</p>
     <div style="margin-top: 60px; font-size: 20px; opacity: 0.8; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px;">
@@ -201,7 +27,12 @@
 </div>
 
 <!-- 2. نطاق العمل التفصيلي -->
-<div class="slide">
+<div class="slide" data-slide="2">
+    <div class="slide-number">2 / 8</div>
+    <div class="slide-header">
+        <div class="slide-header-logo"></div>
+        <div class="slide-header-title">استراتيجية تقييم الوضع الراهن وبناء المخطط العام</div>
+    </div>
     <h2 class="slide-title">نطاق العمل: دراسة وتحليل المحاور الأربعة</h2>
     <div class="content-area">
         <div class="grid-2">
@@ -239,29 +70,41 @@
             </div>
         </div>
     </div>
+    <div class="slide-footer">مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026</div>
 </div>
 
 <!-- 3. المنهجية والخطوات باستفاضة -->
-<div class="slide">
+<div class="slide" data-slide="3">
+    <div class="slide-number">3 / 8</div>
+    <div class="slide-header">
+        <div class="slide-header-logo"></div>
+        <div class="slide-header-title">استراتيجية تقييم الوضع الراهن وبناء المخطط العام</div>
+    </div>
     <h2 class="slide-title">منهجية العمل: رحلة التطوير (60 يوماً)</h2>
     <div class="content-area">
-        <div class="info-card" style="margin-bottom: 25px; border-right: 8px solid var(--accent-cyan);">
+        <div class="info-card" style="margin-bottom: 25px;">
             <p><strong>المرحلة الأولى: التشخيص المعمق (جمع البيانات وتحليل الفجوات)</strong></p>
             <p style="font-size: 18px;">نقوم خلال هذه المرحلة بعقد ورش عمل مكثفة مع كافة الأطراف المعنية، ومراجعة الوثائق الحالية. الهدف هو اكتشاف العوائق الحقيقية التي تمنع الشركة من التوسع، وتقديم تقرير صريح بوضع الشركة الراهن في المحاور الأربعة.</p>
         </div>
-        <div class="info-card" style="margin-bottom: 25px; border-right: 8px solid var(--primary-navy);">
+        <div class="info-card" style="margin-bottom: 25px;">
             <p><strong>المرحلة الثانية: صياغة الاستراتيجية ودليل الحوكمة</strong></p>
             <p style="font-size: 18px;">بناءً على نتائج التشخيص، نبدأ بتصميم "المخطط الهندسي" للشركة. يشمل ذلك رسم الهياكل التنظيمية الحديثة، وصياغة قواعد الحوكمة التي تضمن التحكم والشفافية، بالإضافة إلى تحديد خارطة طريق التحول الرقمي.</p>
         </div>
-        <div class="info-card" style="border-right: 8px solid var(--accent-cyan);">
+        <div class="info-card">
             <p><strong>المرحلة الثالثة: إعداد المجلد النهائي والاعتماد</strong></p>
             <p style="font-size: 18px;">تجميع كافة المخرجات في "مجلد الاستراتيجية الشامل". يتم تقديمه للإدارة ومناقشته باستفاضة لإجراء التعديلات النهائية، ليكون بمثابة المرجع القانوني والإداري الأول للشركة في كافة قراراتها القادمة.</p>
         </div>
     </div>
+    <div class="slide-footer">مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026</div>
 </div>
 
 <!-- 4. فريق العمل (أيقونات موحدة) -->
-<div class="slide">
+<div class="slide" data-slide="4">
+    <div class="slide-number">4 / 8</div>
+    <div class="slide-header">
+        <div class="slide-header-logo"></div>
+        <div class="slide-header-title">استراتيجية تقييم الوضع الراهن وبناء المخطط العام</div>
+    </div>
     <h2 class="slide-title">فريق العمل: نخبة من الخبراء المتخصصين</h2>
     <div class="content-area">
         <div class="grid-3">
@@ -288,10 +131,16 @@
             <p style="font-size: 18px; color: var(--text-muted);">يدعم الفريق الاستشاري مجموعة من المساعدين الفنيين في مجالات التقنية والمالية  والقانونية والتدقيق لضمان دقة البيانات.</p>
         </div>
     </div>
+    <div class="slide-footer">مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026</div>
 </div>
 
 <!-- 5. الجدول الزمني التفصيلي -->
-<div class="slide">
+<div class="slide" data-slide="5">
+    <div class="slide-number">5 / 8</div>
+    <div class="slide-header">
+        <div class="slide-header-logo"></div>
+        <div class="slide-header-title">استراتيجية تقييم الوضع الراهن وبناء المخطط العام</div>
+    </div>
     <h2 class="slide-title">الجدول الزمني للتنفيذ (فبراير - مارس)</h2>
     <div class="content-area">
         <table class="timeline-box">
@@ -336,10 +185,16 @@
             </tbody>
         </table>
     </div>
+    <div class="slide-footer">مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026</div>
 </div>
 
 <!-- 6. المخرج النهائي: المجلد -->
-<div class="slide">
+<div class="slide" data-slide="6">
+    <div class="slide-number">6 / 8</div>
+    <div class="slide-header">
+        <div class="slide-header-logo"></div>
+        <div class="slide-header-title">استراتيجية تقييم الوضع الراهن وبناء المخطط العام</div>
+    </div>
     <h2 class="slide-title">المخرج النهائي: مجلد الاستراتيجية الشامل</h2>
     <div class="content-area">
         <div class="grid-2">
@@ -359,10 +214,16 @@
             </div>
         </div>
     </div>
+    <div class="slide-footer">مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026</div>
 </div>
 
 <!-- 7. الاستثمار المالي وجدولة الدفعات -->
-<div class="slide">
+<div class="slide" data-slide="7">
+    <div class="slide-number">7 / 8</div>
+    <div class="slide-header">
+        <div class="slide-header-logo"></div>
+        <div class="slide-header-title">استراتيجية تقييم الوضع الراهن وبناء المخطط العام</div>
+    </div>
     <h2 class="slide-title">الاستثمار المالي وجدولة الدفعات</h2>
     <div class="content-area">
         <div class="grid-2">
@@ -381,10 +242,12 @@
             </div>
         </div>
     </div>
+    <div class="slide-footer">مكتب الحكماء للاستشارات الاستراتيجية | فبراير - مارس 2026</div>
 </div>
 
 <!-- 8. الخاتمة -->
-<div class="slide hero-slide">
+<div class="slide hero-slide" data-slide="8">
+    <div class="slide-number">8 / 8</div>
     <i class="fa-solid fa-award" style="font-size: 100px; color: var(--accent-cyan); margin-bottom: 30px;"></i>
     <h1>شريككم في صياغة المستقبل</h1>
     <p>مكتب الحكماء - نضع بين أيديكم المخطط الهندسي لنجاحكم المستمر.</p>
@@ -392,6 +255,75 @@
         نشكركم على ثقتكم الغالية، ونتطلع لبدء العمل في فبراير 2026.
     </div>
 </div>
+
+</div>
+
+<!-- Navigation Controls -->
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</div>
+
+<script>
+    let currentSlideIndex = 1;
+    const totalSlides = document.querySelectorAll('.slide').length;
+    
+    // Initialize
+    document.getElementById('totalSlides').textContent = totalSlides;
+    updateNavigation();
+    
+    function changeSlide(direction) {
+        const slides = document.querySelectorAll('.slide');
+        
+        // Remove active class from current slide
+        slides[currentSlideIndex - 1].classList.remove('active');
+        
+        // Update index
+        currentSlideIndex += direction;
+        
+        // Add active class to new slide
+        slides[currentSlideIndex - 1].classList.add('active');
+        
+        // Update UI
+        updateNavigation();
+        updateProgressBar();
+        
+        // Smooth scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function updateNavigation() {
+        document.getElementById('currentSlide').textContent = currentSlideIndex;
+        
+        // Disable/enable buttons
+        document.getElementById('prevBtn').disabled = currentSlideIndex === 1;
+        document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides;
+    }
+    
+    function updateProgressBar() {
+        const progress = (currentSlideIndex / totalSlides) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft' && currentSlideIndex < totalSlides) {
+            changeSlide(1);
+        } else if (event.key === 'ArrowRight' && currentSlideIndex > 1) {
+            changeSlide(-1);
+        }
+    });
+    
+    // Initialize progress bar
+    updateProgressBar();
+</script>
 
 </body>
 </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استراتيجية تقييم الوضع الراهن وبناء المخطط العام - عرض تفصيلي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="presentation-container">
+    <iframe id="slideFrame" src="slide1.html" style="width: 100%; height: calc(100vh - 120px); border: none; position: relative; z-index: 1;"></iframe>
+</div>
+
+<!-- Navigation Controls -->
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</div>
+
+<script>
+    let currentSlideIndex = 1;
+    const totalSlides = 8;
+    
+    // Initialize
+    document.getElementById('totalSlides').textContent = totalSlides;
+    updateNavigation();
+    updateProgressBar();
+    
+    function changeSlide(direction) {
+        // Update index
+        currentSlideIndex += direction;
+        
+        // Load new slide
+        document.getElementById('slideFrame').src = 'slide' + currentSlideIndex + '.html';
+        
+        // Update UI
+        updateNavigation();
+        updateProgressBar();
+    }
+    
+    function updateNavigation() {
+        document.getElementById('currentSlide').textContent = currentSlideIndex;
+        
+        // Disable/enable buttons
+        document.getElementById('prevBtn').disabled = currentSlideIndex === 1;
+        document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides;
+    }
+    
+    function updateProgressBar() {
+        const progress = (currentSlideIndex / totalSlides) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft' && currentSlideIndex < totalSlides) {
+            changeSlide(1);
+        } else if (event.key === 'ArrowRight' && currentSlideIndex > 1) {
+            changeSlide(-1);
+        }
+    });
+</script>
+
+</body>
+</html>
